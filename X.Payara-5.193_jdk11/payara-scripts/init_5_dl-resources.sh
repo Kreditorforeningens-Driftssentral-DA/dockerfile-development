@@ -1,18 +1,19 @@
 #!/bin/bash
 set -x
 export ACTIVEMQ_RAR_VER='5.15.9'
-export JDBC_POSTGRES_VER='42.2.6'
-export JDBC_MMSQL_VER='7.2'
+export JDBC_POSTGRES_VER='42.2.8'
+export JDBC_MMSQL_VER='7.4.1.0'
+export JDBC_MMSQL_URL='https://download.microsoft.com/download/6/9/9/699205CA-F1F1-4DE9-9335-18546C5C8CBD/sqljdbc_7.4.1.0_enu.tar.gz'
 export LOGBACK_VER='1.0.13'
 export SIMPLE_LOG_VER='1.7.25'
 
 echo '----- CUSTOM START Downloading files..'
 #                                                      Microsoft SQL JDBC driver
 # ------------------------------------------------------------------------------
-wget -qO /tmp/sqljdbc_${JDBC_MMSQL_VER}.2.0_enu.tar.gz https://download.microsoft.com/download/4/D/C/4DCD85FA-0041-4D2E-8DD9-833C1873978C/sqljdbc_${JDBC_MMSQL_VER}.2.0_enu.tar.gz
-tar xzC /tmp/ -f /tmp/sqljdbc_${JDBC_MMSQL_VER}.2.0_enu.tar.gz
-mv /tmp/sqljdbc_${JDBC_MMSQL_VER}/enu/mssql-jdbc-${JDBC_MMSQL_VER}.2.jre8.jar /opt/payara/appserver/glassfish/domains/production/lib/
-rm -rf /tmp/sqljdbc_${JDBC_MMSQL_VER}
+wget -qO /tmp/sqljdbc_${JDBC_MMSQL_VER}_enu.tar.gz ${JDBC_MMSQL_URL}
+tar xzC /tmp/ -f /tmp/sqljdbc_${JDBC_MMSQL_VER}_enu.tar.gz
+mv /tmp/sqljdbc_${JDBC_MMSQL_VER}/enu/mssql-jdbc-7.4.1.jre11.jar /opt/payara/appserver/glassfish/domains/production/lib/
+rm -rf /tmp/sqljdbc*
 
 #                                                         PostgreSQL JDBC driver
 # ------------------------------------------------------------------------------
